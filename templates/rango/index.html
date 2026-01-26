@@ -11,8 +11,20 @@
             hey there partner! <br />
             <strong>{{ boldmessage }} </strong><br />
         </div>
+        <h1>Rango says hey there partner!</h1>
         <div>
-            <a href ="/rango/about/">About</a><br />
+            {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+            {% else %} 
+            <strong> there are no categories present.</strong>
+            {% endif %}
+        </div>
+        <div>
+            <a href="/rango/about/">About</a><br />
             <img src = "{% static 'images/rango.jpg'%}" 
             alt ="Picture of Rango" />
         </div>
