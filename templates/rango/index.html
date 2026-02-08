@@ -4,12 +4,19 @@
 {% block title_block %}Homepage{% endblock %}
 
 {% block body_block %}
+{% if user.is_authenticated %}
+   howdy {{ user.username }}!
+{% else %}
+   hey there partner!
+{% endif %}
 <h2>Most Liked Categories</h2>
             {% if categories %}
             <ul>
                 {% for category in categories %}
                 <li>
-                    <a href="/rango/category/{{category.slug}}/">{{ category.name }}</a>
+                    <a href="{% url 'rango:show_category' category.slug %}">
+                        {{ category.name }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -30,6 +37,6 @@
             {% else %} 
             <strong>There are no pages present.</strong>
             {% endif %}
+            <img src= "{% static 'images/rango.jpg'%}" 
+            alt="Picture of Rango" />
 {% endblock %}
- <img src= "{% static 'images/rango.jpg'%}" 
- alt="Picture of Rango" />
